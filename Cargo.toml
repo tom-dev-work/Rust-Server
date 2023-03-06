@@ -1,0 +1,29 @@
+[package]
+name = "rotify-server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+tungstenite = "0.18.0"
+url = "2.2.2"
+serde = {version = "1.0.152", features = ["derive"]}
+serde_json = "1.0.91"
+chrono = { version = "0.4.23", features = ["serde"] }
+uuid = { version = "1.2.2", features = ["serde", "v4"] }
+rusqlite = {version = "0.28.0", features = ["bundled"]}
+argon2 = "0.4.1"
+rand_core = { version = "0.6", features = ["std"] }
+toml = "0.5.10"
+rocket = "0.4.11"
+rocket_contrib = {version = "0.4.11", features = ["json"]}
+
+[patch.crates-io]
+traitobject = { git = "https://github.com/reem/rust-traitobject", rev = "b3471a15917b2caf5a8b27debb0b4b390fc6634f" }
+
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
